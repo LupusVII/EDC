@@ -1,0 +1,40 @@
+Schéma de fonctionnement
+
+Notes :
+
+N1   	->
+
+
+Globales :
+
+G1 		-> Tableau de correspondance "Zoom" => "Distance Max entre News"
+
+
+Algo : 
+
+Schéma au chargement de la page
+D1 		-> Récupérer l'emplacement central de la map
+D1.1 	-> Récupérer la résolution de l'écran
+D1.2	-> En fonction des deux précédents, calculer la longitude et la latitude maximale affichée à l'écran
+D1.3	-> Effectuer la première fonction SQL, récupérant tous les articles se situant dans le rectangle calculé en 1.3
+D1.4	-> Stocker toutes les données sous un tableau JSON, voir format en Annexe A1
+D1.5	-> Parcourir le tableau puis afficher les données
+D1.6	-> Prendre le niveau du zoom par défaut et récupérer la valeur dans G1
+D1.7	-> Afficher les cercles ou les marqueurs en fonction du calcul fait en 1.6
+
+Fonction au clic sur un Marqueur
+M1		-> Récupérer l'ID du marqueur
+M1.1	-> Requête SQL pour récupérer les données de la news
+M1.2	-> Afficher la news
+
+Fonction au clic sur un Cercle
+C1		-> Zoom de la carte sur le centre du cercle
+C1.1	-> Rechargement des articles en D1
+
+Fonction sur un DragEnd (Ne pas déclencher la fonction sur le Drag mais bien sur le DragEnd)
+E1		-> Effaçage des données sur la carte
+E1.1	-> Rechargement des articles en D1
+
+Fonction sur un onZoomend()
+Z1		-> Effaçage des données sur la carte
+Z1.1	-> Rechargement des articles en D1
